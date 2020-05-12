@@ -3,7 +3,7 @@ var app  = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var database = require('./modules/database');
-
+database();
 
 var usuariosRouter = require('./routes/usuarios-router');
 var categoriasRouter = require('./routes/categorias-router');
@@ -38,3 +38,6 @@ app.set('port', process.env.PORT || 8888);
 app.listen(app.get('port'), () => {
     console.log('Servidor levantado en el puerto: ', app.get('port'))
 })
+
+
+//https://api-flan.herokuapp.com/

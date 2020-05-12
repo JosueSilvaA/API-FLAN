@@ -1,24 +1,43 @@
 var mongoose = require('mongoose');
 
 // Nombre base de dato 
-let bd = 'FlanDB';
-let port = '27017';
-let host = 'localhost';
+// let bd = 'FlanDB';
+// let port = '27017';
+// let host = 'localhost';
 
-class Database{
-    constructor(){
-        this.conectar();
-    }
+const URI = "mongodb+srv://admin:flan@cluster0-sibnl.mongodb.net/test?retryWrites=true&w=majority";
 
-    conectar(){
-        mongoose.connect(`mongodb://${host}:${port}/${bd}`)
-        .then(result=>{
-            console.log('Se conecto a mongodb');
-        })
-        .catch(error =>{
-            console.log(error);
-        });
-    }
-}
+const connectDB = async () =>{
+    await mongoose.connect(URI,{
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+    }).then(result=>{
+        console.log('Se conecto a mongodb');
+    })
+    .catch(error =>{
+        console.log(error);
+    });
+};
 
-module.exports = new Database();
+module.exports = connectDB;
+// class Database{
+//     constructor(){
+//         this.conectar();
+//     }
+
+//     conectar(){
+//         mongoose.connect(URL,{ 
+//             useUnifiedTopology: true,
+//             useNewUrlParser: true
+//         })
+//         .then(result=>{
+//             console.log('Se conecto a mongodb');
+//         })
+//         .catch(error =>{
+//             console.log(error);
+//         });
+//     }
+// }
+
+// module.exports = new Database();
+
