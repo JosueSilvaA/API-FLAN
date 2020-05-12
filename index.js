@@ -29,6 +29,12 @@ app.get('/',function(req,res){
     res.send('Servidor backend en linea');
 });
 
-app.listen(8888,function(){
-    console.log('Se levanto el servidor');
-});
+// app.listen(8888,function(){
+//     console.log('Se levanto el servidor');
+// });
+
+app.set('port', process.env.PORT || 8888);
+
+app.listen(app.get('port'), () => {
+    console.log('Servidor levantado en el puerto: ', app.get('port'))
+})
