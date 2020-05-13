@@ -141,8 +141,7 @@ router.put('/:idTema',function(req,res){
         {
             titulo:req.body.titulo,
             descripcion:req.body.descripcion,
-            estilos:req.body.estilos,
-            imagenes:req.body.imagenes  
+            estilos:req.body.estilos,  
         }
     ).then(result=>{
         res.send(result);
