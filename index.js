@@ -26,7 +26,7 @@ app.use('/paginaPrincipal',paginaPrincipalRouter);
 
 
 app.get('/',function(req,res){
-    res.send('Servidor backend en linea');
+    res.send('Servidor de API-FLAN Levantado');
 });
 
 // app.listen(8888,function(){
