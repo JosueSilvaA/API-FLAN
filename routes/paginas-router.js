@@ -42,6 +42,18 @@ router.get('/',function(req,res){
     });
 });
 
+//Obtener una pagina en especifico
+router.get('/:idPagina',function(req,res){
+    pagina.find({_id:req.params.idPagina}).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+
 //Editar una pagina
 
 router.put('/:idPagina',function(req,res){
@@ -62,6 +74,21 @@ router.put('/:idPagina',function(req,res){
         res.end();
     });
 });
+
+// Eliminar una pagina
+
+router.delete('/:idPagina',function(req,res){
+    pagina.remove(
+        {_id:req.params.idPagina}
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
 
 //Cambiar el estado de visualizacion de la pagina
 router.put('/:idPagina/visualizacion',function(req,res){
@@ -95,5 +122,342 @@ router.put('/:idPagina/estado',function(req,res){
     });
 });
 
+//Agregar un nuevo contenido
+
+router.post('/:idPagina/contenido',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $push:{
+                contenido:{
+                    _id:mongoose.Types.ObjectId(),
+                    tipo:req.body.tipo,
+                    html:req.body.html
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// Editar el contenido
+router.put('/:idPagina/contenido/:idContenido',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina),
+            "contenido._id":mongoose.Types.ObjectId(req.params.idContenido)
+        },
+        {
+            $set:
+            {
+                "contenido.$.html":req.body.html
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// Eliminar un  contenido
+router.post('/:idPagina/contenido/:idContenido',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina),
+        },
+        {
+            $pull:{
+                contenido:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idContenido)
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+
+// crud de imagenes de la pagina principal
+
+// Agregar imagen a la pagina
+router.post('/:idPagina/imagenes',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $push:{
+                imagenes:
+                {
+                    _id:mongoose.Types.ObjectId(),
+                    nombreImagen:req.body.nombreImagen,
+                    descripcion:req.body.descripcion,
+                    url:req.body.url
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+// Eliminar imagen de la pagina
+
+router.post('/:idPagina/imagenes/:idImagen',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $pull:{
+                imagenes:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idImagen)
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// Editar una imagen
+router.put('/:idPagina/imagenes/:idImagen',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina),
+            "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
+        },
+        {
+            $set:
+            {
+                "imagenes.$.nombreImagen":req.body.nombreImagen ,
+                "imagenes.$.descripcion":req.body.descripcion
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// crud de videos pagina principal
+
+//agregar video a la pagina principal
+router.post('/:idPagina/videos',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $push:{
+                videos:
+                {
+                    _id:mongoose.Types.ObjectId(),
+                    nombreVideo:req.body.nombreVideo,
+                    descripcion:req.body.descripcion,
+                    video:req.body.video
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+// Eliminar video de la pagina
+
+router.post('/:idPagina/videos/:idVideo',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $pull:{
+                videos:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idVideo)
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// Editar video
+router.put('/:idPagina/videos/:idVideo',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina),
+            "videos._id":mongoose.Types.ObjectId(req.params.idVideo)
+        },
+        {
+            $set:
+            {
+                "videos.$.nombreVideo":req.body.nombreVideo ,
+                "videos.$.descripcion":req.body.descripcion
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// crud de documentos
+//agregar documento a la pagina principal
+router.post('/:idPagina/documentos',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $push:{
+                documentos:
+                {
+                    _id:mongoose.Types.ObjectId(),
+                    nombreDocumento:req.body.nombreDocumento,
+                    descripcion:req.body.descripcion,
+                    doc:req.body.doc
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+// Eliminar video de la pagina
+
+router.post('/:idPagina/documentos/:idDocumento',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $pull:{
+                documentos:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idDocumento)
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// Editar video
+router.put('/:idPagina/documentos/:idDocumento',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina),
+            "documentos._id":mongoose.Types.ObjectId(req.params.idDocumento)
+        },
+        {
+            $set:
+            {
+                "documentos.$.nombreDocumento":req.body.nombreDocumento ,
+                "documentos.$.descripcion":req.body.descripcion
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+//agregar post
+router.post('/:idPagina/posts/:idpost',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $push:{
+                posts:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idpost)
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+//eliminar un post
+router.delete('/:idPagina/posts/:idpost',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina)
+        },
+        {
+            $pull:{
+                posts:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idpost)
+                }
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
 
 module.exports = router;
