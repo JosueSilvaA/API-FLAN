@@ -40,7 +40,7 @@ router.post('/',function(req,res){
 //Editar pagina Principal
 router.put('/',function(req,res){
     paginaPrincipal.update(
-        { _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')},
+        { _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')},
         {
             favicon:req.body.favicon,
             logo:req.body.logo,
@@ -63,7 +63,7 @@ router.put('/',function(req,res){
 router.post('/imagenes',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
         },
         {
             $push:{
@@ -89,7 +89,7 @@ router.post('/imagenes',function(req,res){
 router.post('/imagenes/:idImagen',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
         },
         {
             $pull:{
@@ -112,7 +112,7 @@ router.post('/imagenes/:idImagen',function(req,res){
 router.put('/imagenes/:idImagen',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd'),
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74'),
             "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
         },
         {
@@ -137,7 +137,7 @@ router.put('/imagenes/:idImagen',function(req,res){
 router.post('/videos',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
         },
         {
             $push:{
@@ -163,7 +163,7 @@ router.post('/videos',function(req,res){
 router.post('/videos/:idVideo',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
         },
         {
             $pull:{
@@ -186,7 +186,7 @@ router.post('/videos/:idVideo',function(req,res){
 router.put('/videos/:idVideo',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd'),
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74'),
             "videos._id":mongoose.Types.ObjectId(req.params.idVideo)
         },
         {
@@ -210,7 +210,7 @@ router.put('/videos/:idVideo',function(req,res){
 router.post('/documentos',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
         },
         {
             $push:{
@@ -236,7 +236,7 @@ router.post('/documentos',function(req,res){
 router.post('/documentos/:idDocumento',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd')
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
         },
         {
             $pull:{
@@ -259,7 +259,7 @@ router.post('/documentos/:idDocumento',function(req,res){
 router.put('/documentos/:idDocumento',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5eba075ceb7dbe385c5737cd'),
+            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74'),
             "documentos._id":mongoose.Types.ObjectId(req.params.idDocumento)
         },
         {
