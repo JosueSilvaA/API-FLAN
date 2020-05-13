@@ -11,6 +11,8 @@ var temasRouter = require('./routes/temas-router');
 var postsRouter = require('./routes/posts-router');
 var rolesUsuarioRouter = require('./routes/rolesUsuarios-router');
 var paginaPrincipalRouter = require('./routes/paginaPrincipal-router');
+var paginasRouter = require('./routes/paginas-router');
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -22,7 +24,7 @@ app.use('/temas',temasRouter);
 app.use('/posts',postsRouter);
 app.use('/roles',rolesUsuarioRouter);
 app.use('/paginaPrincipal',paginaPrincipalRouter);
-
+app.use('/paginas',paginasRouter);
 
 
 app.get('/',function(req,res){
