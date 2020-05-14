@@ -43,3 +43,26 @@ app.listen(app.get('port'), () => {
 
 
 //https://api-flan.herokuapp.com/
+// <!-- The core Firebase JS SDK is always required and must be listed first -->
+// <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+
+// <!-- TODO: Add SDKs for Firebase products that you want to use
+//      https://firebase.google.com/docs/web/setup#available-libraries -->
+// <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+
+// <script>
+//   // Your web app's Firebase configuration
+//   var firebaseConfig = {
+//     apiKey: "AIzaSyDqGvzZzBm88_drSv9e1xhKLfjMkmLFEOU",
+//     authDomain: "flan-file.firebaseapp.com",
+//     databaseURL: "https://flan-file.firebaseio.com",
+//     projectId: "flan-file",
+//     storageBucket: "flan-file.appspot.com",
+//     messagingSenderId: "533244365252",
+//     appId: "1:533244365252:web:1aeea4f2605ccfe866fc91",
+//     measurementId: "G-7ZPDKRV8GW"
+//   };
+//   // Initialize Firebase
+//   firebase.initializeApp(firebaseConfig);
+//   firebase.analytics();
+// </script>
