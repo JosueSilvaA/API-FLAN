@@ -12,6 +12,7 @@ var postsRouter = require('./routes/posts-router');
 var rolesUsuarioRouter = require('./routes/rolesUsuarios-router');
 var paginaPrincipalRouter = require('./routes/paginaPrincipal-router');
 var paginasRouter = require('./routes/paginas-router');
+var loginRouter = require('./routes/login-router');
 
 
 app.use(cors());
@@ -25,6 +26,7 @@ app.use('/posts',postsRouter);
 app.use('/roles',rolesUsuarioRouter);
 app.use('/paginaPrincipal',paginaPrincipalRouter);
 app.use('/paginas',paginasRouter);
+app.use('/login',loginRouter);
 
 
 app.get('/',function(req,res){
