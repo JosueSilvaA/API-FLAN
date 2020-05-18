@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var usuario = require('../models/usuario');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const SECRET_KEY ='secretkey123456';
 
 //guardar un usuario
 router.post('/',function(req,res){
@@ -15,6 +18,8 @@ router.post('/',function(req,res){
         }
     );
     u.save().then(result=>{
+        const expiresIn = 24*60*60;
+        const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn});
         res.send({codigoResultado:1,mensaje:'registro guardado',usuarioGuardado:result});
         res.end();
     }).catch(error=>{

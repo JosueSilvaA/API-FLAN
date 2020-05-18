@@ -4,14 +4,20 @@ var usuario = require('../models/usuario');
 
 
 router.get('/',function(req,res){
-    usuario.find(
+    usuario.findOne(
         {
             correo: req.body.correo,
             contrasena:req.body.contrasena
-        }
+        },
+        {_id:true,nombres:true}
     ).then(result=>{
-        res.send({mensaje:"no hay nada",resultado:result});
-        res.end();
+        if(!result){
+            res.send({mensaje:'-1'});
+            res.end();
+        }else{
+            res.send({mensaje:result});
+            res.end();
+        }
     }).catch(error=>{
         res.send(error);
         res.end();
