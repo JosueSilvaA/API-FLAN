@@ -13,7 +13,7 @@ router.post('/',function(req,res){
             apellidos:req.body.apellidos,
             correo:req.body.correo,
             usuario:req.body.usuario,
-            contrasena:req.body.contrasena,
+            contrasena:bcrypt.hashSync(req.body.contrasena),
             rol:req.body.rol
         }
     );
