@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var usuario = require('../models/usuario');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const SECRET_KEY ='secretkey123456';
+var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs');
+var SECRET_KEY ='secretkey123456';
 
 router.post('/',function(req,res){
     userData ={
@@ -11,15 +11,11 @@ router.post('/',function(req,res){
         contrasena:req.body.contrasena
     }
     usuario.findOne(
-        {
-            correo: userData.correo
-        },
-        {_id:true,nombres:true,contrasena:true}
+        {correo:userData.correo}
     ).then(result=>{
         if(!result){
             //usuario no existe
             res.send({mensaje:'-1',resultado:result});
-            res.end();
         }else{
             const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
             if(resultContrasena){
@@ -31,12 +27,10 @@ router.post('/',function(req,res){
                     accessToken:accessToken,
                     expiresIn:expiresIn
                 }
-                res.send(result);
-                res.end();
+                res.send({dataUser});
             }else{
                 //contraseña  incorrecta
-                res.send({mensaje:'incorrecta',resultado:result});
-                res.end();
+                res.send({mensaje:'incorrecta'});
             }    
         }
     }).catch(error=>{
