@@ -84,4 +84,19 @@ router.delete('/:id',function(req,res){
     });
 });
 
+router.post('/login',function(req,res){
+    usuario.findOne(
+        {
+            correo:req.body.correo
+        },
+        {_id:true,nombres:true,contrasena:true}
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+})
+
 module.exports = router;
