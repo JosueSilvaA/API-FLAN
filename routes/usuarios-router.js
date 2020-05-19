@@ -84,7 +84,7 @@ router.delete('/:id',function(req,res){
     });
 });
 
-router.post('/',function(req,res){
+router.post('/login',function(req,res){
     userData ={
         correo: req.body.correo,
         contrasena:req.body.contrasena
