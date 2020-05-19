@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SECRET_KEY ='secretkey123456';
 
-router.get('/',function(req,res){
+router.post('/',function(req,res){
     userData ={
         correo: req.body.correo,
         contrasena:req.body.contrasena
