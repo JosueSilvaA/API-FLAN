@@ -21,11 +21,17 @@ router.get('/',function(req,res){
             res.send({mensaje:'-1'});
             res.end();
         }else{
-            const resultContrasena = result.contrasena
-            if(resultContrasena == userData.contrasena){
+            const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
+            if(resultContrasena){
                 const expiresIn = 24*60*60;
                 const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn}); 
-                res.send({result});
+                const dataUser ={
+                    id:result._id,
+                    nombres:result.nombres,
+                    accessToken:accessToken,
+                    expiresIn:expiresIn
+                }
+                res.send({dataUser});
                 res.end();
             }else{
                 //contraseña  incorrecta
