@@ -101,12 +101,21 @@ router.post('/login',function(req,res){
             
         }else{
             if(result.contrasena == userData.contrasena){
-                res.send({mensaje:'funciona'})
+                const expiresIn = 24*60*60;
+                const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn}); 
+                const dataUser ={
+                    id:result._id,
+                    nombres:result.nombres,
+                    accessToken:accessToken,
+                    expiresIn:expiresIn
+                }
+                res.send(result);
+                res.end();
             }else{
-
-                res.send({mensaje:'no es la adios ',info:result.contrasena})
+                //contraseña  incorrecta
+                res.send({mensaje:'incorrecta',resultado:result});
+                res.end();
             }
-            
         }
     }).catch(error=>{
         res.send(error);
