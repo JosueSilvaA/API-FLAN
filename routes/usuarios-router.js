@@ -106,7 +106,7 @@ router.post('/login',function(req,res){
                     accessToken:accessToken,
                     expiresIn:expiresIn
                 }
-                res.send({dataUser});
+                res.send({result});
 
             }else{
                 //contraseña  incorrecta
