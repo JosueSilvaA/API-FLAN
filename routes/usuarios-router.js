@@ -94,10 +94,10 @@ router.post('/login',function(req,res){
         if(!result){
             //usuario no existe
             res.send({mensaje:'-1',resultado:result});
-            res.end();
+            
         }else{
             res.send(result);
-            res.end();
+            
         }
     }).catch(error=>{
         res.send(error);
