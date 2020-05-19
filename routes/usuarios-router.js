@@ -104,7 +104,7 @@ router.post('/login',function(req,res){
                 res.send({mensaje:'funciona'})
             }else{
 
-                res.send({mensaje:'no es la contrasena',info:userData.contrasena})
+                res.send({mensaje:'no es la ',info:userData.contrasena})
             }
             
         }
