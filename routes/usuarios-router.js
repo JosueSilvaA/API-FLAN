@@ -84,45 +84,5 @@ router.delete('/:id',function(req,res){
     });
 });
 
-router.post('/login',function(req,res){
-    userData ={
-        correo: req.body.correo,
-        contrasena:req.body.contrasena
-    }
-    usuario.findOne(
-        {
-            correo:userData.correo
-        },
-        {_id:true,nombres:true,contrasena:true}
-    ).then(result=>{
-        if(!result){
-            //usuario no existe
-            res.send({mensaje:'-1.6',resultado:result});
-            
-        }else{
-            // const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
-            if(true){
-                const expiresIn = 24*60*60;
-                const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn}); 
-                const dataUser ={
-                    id:result._id,
-                    nombres:result.nombres,
-                    accessToken:accessToken,
-                    expiresIn:expiresIn,
-                    contra:resultContrasena
-                }
-                res.send(dataUser);
-                res.end();
-            }else{
-                //contraseña  incorrecta
-                res.send({mensaje:'incorrecta',resultado:result});
-                res.end();
-            }
-        }
-    }).catch(error=>{
-        res.send(error);
-        res.end();
-    });
-})
 
 module.exports = router;

@@ -6,7 +6,6 @@ var bcrypt = require('bcryptjs');
 var SECRET_KEY ='secretkey123456';
 
 router.post('/',function(req,res){
-    console.log("body",req.body)
     userData ={
         correo: req.body.correo,
         contra:req.body.contra
@@ -18,13 +17,7 @@ router.post('/',function(req,res){
             //usuario no existe
             res.send({mensaje:'-1',resultado:result});
         }else{
-            console.log("xxxx",req.body.contra)
-            console.log("xx",result.contrasena)
-            const resultContrasena = bcrypt.compareSync(userData.contra, result.contrasena,function(error,res){
-                console.log('RESPUESTA',res);
-                console.log('ERROR',error);
-            })
-            console.log('contrasena',resultContrasena)
+            const resultContrasena = bcrypt.compareSync(userData.contra, result.contrasena)
             if(resultContrasena){
                 const expiresIn = 24*60*60;
                 const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn}); 
@@ -34,7 +27,6 @@ router.post('/',function(req,res){
                     accessToken:accessToken,
                     expiresIn:expiresIn
                 }
-                console.log("DATA",dataUser)
                 res.send(dataUser);
                 
             }else{
