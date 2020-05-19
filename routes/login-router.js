@@ -18,7 +18,7 @@ router.post('/',function(req,res){
     ).then(result=>{
         if(!result){
             //usuario no existe
-            res.send({mensaje:'-1'});
+            res.send({mensaje:'-1',resultado:result});
             res.end();
         }else{
             const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
@@ -31,11 +31,11 @@ router.post('/',function(req,res){
                     accessToken:accessToken,
                     expiresIn:expiresIn
                 }
-                res.send({dataUser});
+                res.send(result);
                 res.end();
             }else{
                 //contraseña  incorrecta
-                res.send({mensaje:'incorrecta'});
+                res.send({mensaje:'incorrecta',resultado:result});
                 res.end();
             }    
         }
