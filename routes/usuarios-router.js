@@ -97,10 +97,9 @@ router.post('/login',function(req,res){
     ).then(result=>{
         if(!result){
             //usuario no existe
-            res.send({mensaje:'-1.4',resultado:result});
+            res.send({mensaje:'-1.5',resultado:result});
             
         }else{
-            const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
             res.send({mensaje:'funciona'})
         }
     }).catch(error=>{
