@@ -96,9 +96,24 @@ router.post('/login',function(req,res){
             res.send({mensaje:'-1',resultado:result});
             
         }else{
-            res.send(result);
-            
-        }
+            const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
+            if(resultContrasena){
+                const expiresIn = 24*60*60;
+                const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn}); 
+                const dataUser ={
+                    id:result._id,
+                    nombres:result.nombres,
+                    accessToken:accessToken,
+                    expiresIn:expiresIn
+                }
+                res.send(result);
+
+            }else{
+                //contraseña  incorrecta
+                res.send({mensaje:'incorrecta',resultado:result});
+                
+            }
+        }    
     }).catch(error=>{
         res.send(error);
         res.end();
