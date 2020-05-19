@@ -100,7 +100,8 @@ router.post('/login',function(req,res){
             res.send({mensaje:'-1.4',resultado:result});
             
         }else{
-            res.send(result)
+            const resultContrasena = bcrypt.compareSync(userData.contrasena, result.contrasena)
+            res.send({mensaje:'funciona'})
         }
     }).catch(error=>{
         res.send(error);
