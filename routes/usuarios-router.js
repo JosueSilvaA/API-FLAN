@@ -110,7 +110,7 @@ router.post('/login',function(req,res){
 
             }else{
                 //contraseña  incorrecta
-                res.send({mensaje:'incorrecta',resultado:result});
+                res.send({mensaje:'incorrectISIMA',resultado:result});
                 
             }
         }    
