@@ -100,7 +100,12 @@ router.post('/login',function(req,res){
             res.send({mensaje:'-1.5',resultado:result});
             
         }else{
-            res.send({mensaje:'funciona'})
+            if(result.contrasena == userData.contrasena){
+                res.send({mensaje:'funciona'})
+            }else{
+                res.send({mensaje:'no es la contrasena'})
+            }
+            
         }
     }).catch(error=>{
         res.send(error);
