@@ -85,9 +85,13 @@ router.delete('/:id',function(req,res){
 });
 
 router.post('/login',function(req,res){
+    userData ={
+        correo: req.body.correo,
+        contrasena:req.body.contrasena
+    }
     usuario.findOne(
         {
-            correo:req.body.correo
+            correo:userData.correo
         },
         {_id:true,nombres:true,contrasena:true}
     ).then(result=>{
