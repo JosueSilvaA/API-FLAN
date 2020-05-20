@@ -68,7 +68,7 @@ router.post('/registrado/:idRol',function(req,res){
                 
             }else{
                 //contraseña  incorrecta
-                res.send({mensaje:'incorrecta'});
+                res.send({mensaje:'Contraseña incorrecta'});
             }    
         }
     }).catch(error=>{
