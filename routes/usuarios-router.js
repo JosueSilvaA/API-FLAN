@@ -14,7 +14,7 @@ router.post('/',function(req,res){
             correo:req.body.correo,
             usuario:req.body.usuario,
             contrasena:bcrypt.hashSync(req.body.contrasena),
-            rol:req.body.rol
+            rol:'5ebb4bf7033d1300171f926d'
         }
     );
     u.save().then(result=>{
