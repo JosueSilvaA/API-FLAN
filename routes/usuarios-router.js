@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var usuario = require('../models/usuario');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const SECRET_KEY ='secretkey123456';
+
 
 //guardar un usuario
 router.post('/',function(req,res){
@@ -14,12 +13,12 @@ router.post('/',function(req,res){
             correo:req.body.correo,
             usuario:req.body.usuario,
             contrasena:bcrypt.hashSync(req.body.contrasena),
+            direccion:req.body.direccion,
+            telefono:req.body.telefono,
             rol:'5ebb4bf7033d1300171f926d'
         }
     );
     u.save().then(result=>{
-        const expiresIn = 24*60*60;
-        const accessToken = jwt.sign({id:result._id},SECRET_KEY,{expiresIn:expiresIn});
         res.send({codigoResultado:1,mensaje:'registro guardado',usuarioGuardado:result});
         res.end();
     }).catch(error=>{
@@ -60,7 +59,22 @@ router.put('/:id',function(req,res){
             apellidos:req.body.apellidos,
             correo:req.body.correo,
             usuario:req.body.usuario,
-            contrasena:req.body.contrasena,
+            contrasena:req.body.contrasena
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+//cambiar rol a un usuario
+router.put('/:id/rol',function(req,res){
+    usuario.update(
+        {_id:req.params.id},
+        {
             rol:req.body.rol
         }
     ).then(result=>{
@@ -71,6 +85,7 @@ router.put('/:id',function(req,res){
         res.end();
     });
 });
+
 //Eliminar un usuario
 router.delete('/:id',function(req,res){
     usuario.remove(

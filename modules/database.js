@@ -9,6 +9,7 @@ const URI = "mongodb+srv://admin:flan@cluster0-sibnl.mongodb.net/test?retryWrite
 
 const connectDB = async () =>{
     await mongoose.connect(URI,{
+        useCreateIndex: true,
         useUnifiedTopology: true,
         useNewUrlParser: true
     }).then(result=>{
