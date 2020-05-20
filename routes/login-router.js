@@ -32,7 +32,7 @@ router.post('/admin/:idRol',function(req,res){
                 
             }else{
                 //contraseña  incorrecta
-                res.send({mensaje:'incorrecta'});
+                res.send({mensaje:'Contraseña Incorrecta'});
             }    
         }
     }).catch(error=>{
