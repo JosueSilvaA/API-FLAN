@@ -15,6 +15,7 @@ router.post('/',function(req,res){
             contrasena:bcrypt.hashSync(req.body.contrasena),
             direccion:req.body.direccion,
             telefono:req.body.telefono,
+            foto_perfil:'',
             rol:'5ebb4bf7033d1300171f926d'
         }
     );
@@ -59,7 +60,23 @@ router.put('/:id',function(req,res){
             apellidos:req.body.apellidos,
             correo:req.body.correo,
             usuario:req.body.usuario,
-            contrasena:req.body.contrasena
+            contrasena:bcrypt.hashSync(req.body.contrasena)
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+//actualizar foto de perfil usuario
+router.put('/:id/fotoPerfil',function(req,res){
+    usuario.update(
+        {_id:req.params.id},
+        {
+            foto_perfil:req.body.foto_perfil
         }
     ).then(result=>{
         res.send(result);

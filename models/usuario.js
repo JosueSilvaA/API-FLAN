@@ -13,6 +13,7 @@ var esquema = new mongoose.Schema({
     contrasena: String,
     telefono:String,
     direccion:String,
+    foto_perfil:String,
     rol: mongoose.SchemaTypes.ObjectId
 });
 
