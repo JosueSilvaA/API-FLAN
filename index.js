@@ -30,7 +30,7 @@ app.use('/login',loginRouter);
 
 
 app.get('/',function(req,res){
-    res.send('Servidor de API-FLAN Levantado');
+    res.send('Servidor de API-FLAN Levantado hoy');
 });
 
 // app.listen(8888,function(){
