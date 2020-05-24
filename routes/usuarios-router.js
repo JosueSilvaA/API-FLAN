@@ -73,8 +73,7 @@ router.put('/:id',function(req,res){
             telefono: req.body.telefono
         }
     ).then(result=>{
-        
-        res.send(result,{'usuario':req.body.usuario});
+        res.send(result);
         res.end(); 
     }).catch(error=>{
         res.send(error);
