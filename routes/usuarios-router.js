@@ -74,7 +74,7 @@ router.put('/:id',function(req,res){
         }
     ).then(result=>{
         if(resultn.Modified == 1){
-            res.send(result,{usuario:req.body.usuario});
+            res.send(result,{'usuario':req.body.usuario});
             res.end();
         } 
     }).catch(error=>{
