@@ -40,7 +40,7 @@ router.get('/:rol',function(req,res){
 })
 
 //obtener un solo usuario
-router.get('/:idUsuario',function(req,res){
+router.get('/:idUsuario/usuario',function(req,res){
     usuario.find({_id:req.params.idUsuario}).then(result=>{
         res.send(result);
         res.end();
