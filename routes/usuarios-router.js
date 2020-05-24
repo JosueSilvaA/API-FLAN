@@ -73,7 +73,7 @@ router.put('/:id',function(req,res){
             telefono: req.body.telefono
         }
     ).then(result=>{
-        if(resultn.Modified == 1){
+        if(result.nModified == 1){
             res.send(result,{'usuario':req.body.usuario});
             res.end();
         } 
