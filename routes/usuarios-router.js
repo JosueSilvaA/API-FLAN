@@ -73,10 +73,9 @@ router.put('/:id',function(req,res){
             telefono: req.body.telefono
         }
     ).then(result=>{
-        if(result.nModified == 1){
-            res.send(result,{'usuario':req.body.usuario});
-            res.end();
-        } 
+        
+        res.send(result,{'usuario':req.body.usuario});
+        res.end(); 
     }).catch(error=>{
         res.send(error);
         res.end();
