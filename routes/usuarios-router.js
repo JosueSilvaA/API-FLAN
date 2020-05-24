@@ -56,11 +56,10 @@ router.put('/:id',function(req,res){
     usuario.update(
         {_id:req.params.id},
         {
-            nombres: req.body.nombres,
-            apellidos:req.body.apellidos,
             correo:req.body.correo,
             usuario:req.body.usuario,
-            contrasena:bcrypt.hashSync(req.body.contrasena)
+            contrasena:bcrypt.hashSync(req.body.contrasena),
+            telefono: req.body.telefono
         }
     ).then(result=>{
         res.send(result);
