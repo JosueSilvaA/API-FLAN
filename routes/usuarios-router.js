@@ -42,7 +42,7 @@ router.get('/:rol',function(req,res){
 //obtener un solo usuario
 router.get('/:idUsuario/usuario',function(req,res){
     usuario.find({_id:req.params.idUsuario}).then(result=>{
-        res.send(result);
+        res.send(result[0]);
         res.end();
     }).catch(error =>{
         res.send(error);
