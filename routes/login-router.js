@@ -26,7 +26,8 @@ router.post('/admin/:idRol',function(req,res){
                     id:result._id,
                     usuario:result.usuario,
                     accessToken:accessToken,
-                    expiresIn:expiresIn
+                    expiresIn:expiresIn,
+                    foto_perfil:result.foto_perfil
                 }
                 res.send(dataUser);
                 
@@ -62,7 +63,8 @@ router.post('/registrado/:idRol',function(req,res){
                     id:result._id,
                     usuario:result.usuario,
                     accessToken:accessToken,
-                    expiresIn:expiresIn
+                    expiresIn:expiresIn,
+                    foto_perfil:result.foto_perfil
                 }
                 res.send(dataUser);
                 

@@ -83,6 +83,7 @@ router.put('/:id',function(req,res){
 
 //actualizar foto de perfil usuario
 router.put('/:id/fotoPerfil',function(req,res){
+    console.log(req.body)
     usuario.update(
         {_id:req.params.id},
         {
