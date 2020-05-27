@@ -89,7 +89,8 @@ router.put('/:id/admin',function(req,res){
         {
             correo:req.body.correo,
             usuario:req.body.usuario,
-            telefono: req.body.telefono
+            telefono: req.body.telefono,
+            direccion:req.body.direccion
         }
     ).then(result=>{
         res.send(result);
