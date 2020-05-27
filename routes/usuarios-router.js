@@ -81,6 +81,25 @@ router.put('/:id',function(req,res){
     });
 });
 
+
+//actualizar un usuario en admin
+router.put('/:id/admin',function(req,res){
+    usuario.update(
+        {_id:req.params.id},
+        {
+            correo:req.body.correo,
+            usuario:req.body.usuario,
+            telefono: req.body.telefono
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end(); 
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
 //actualizar foto de perfil usuario
 router.put('/:id/fotoPerfil',function(req,res){
     console.log(req.body)
