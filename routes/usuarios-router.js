@@ -116,14 +116,21 @@ router.put('/:id/rol',function(req,res){
 
 //Eliminar un usuario
 router.delete('/:id',function(req,res){
+    console.log(req.params)
     usuario.remove(
         {_id:req.params.id}
     ).then(result=>{
-        res.send(result);
-        res.end();
+        if(result.n==1){
+            res.send({resultado:result,mensaje:'Usuario eliminado con exito'});
+        }else{
+            res.send({resultado:result,mensaje:'No se pudo eliminar el usuario'});
+        }
+        console.log(result);
+        
     }).catch(error=>{
         res.send(error);
         res.end();
+
     });
 });
 

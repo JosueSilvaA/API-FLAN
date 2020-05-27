@@ -17,7 +17,6 @@ router.post('/admin/:idRol',function(req,res){
             //usuario no existe
             res.send({mensaje:'Datos Invalidos',resultado:result});
         }else{
-            console.log(result)
             const resultContrasena = bcrypt.compareSync(userData.contra, result.contrasena)
             if(resultContrasena){
                 const expiresIn = 24*60*60;
