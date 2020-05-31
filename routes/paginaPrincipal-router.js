@@ -84,10 +84,10 @@ router.post('/:id/imagenes',function(req,res){
 });
 // Eliminar imagen de la pagina
 
-router.post('/imagenes/:idImagen',function(req,res){
+router.post('/:id/imagenes/:idImagen',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
+            _id: mongoose.Types.ObjectId(req.params.id)
         },
         {
             $pull:{
