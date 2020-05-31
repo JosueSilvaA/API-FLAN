@@ -107,10 +107,10 @@ router.delete('/:id/imagenes/:idImagen',function(req,res){
 });
 
 // Editar una imagen
-router.put('/imagenes/:idImagen',function(req,res){
+router.put('/:id/imagenes/:idImagen',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74'),
+            _id: mongoose.Types.ObjectId(req.params.id),
             "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
         },
         {
@@ -128,6 +128,22 @@ router.put('/imagenes/:idImagen',function(req,res){
         res.end();
     });
 });
+///////////////////////////////////////////////////////////
+router.get('/:id/imagenes/:idImagen',function(req,res){
+    paginaPrincipal.findOne(
+        { 
+            _id: mongoose.Types.ObjectId(req.params.id),
+            "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
+        }
+    ).then(result=>{
+        res.send(result.imagenes[0]);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
 
 // crud de videos pagina principal
 
