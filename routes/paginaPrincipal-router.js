@@ -84,7 +84,7 @@ router.post('/:id/imagenes',function(req,res){
 });
 // Eliminar imagen de la pagina
 
-router.post('/:id/imagenes/:idImagen',function(req,res){
+router.delete('/:id/imagenes/:idImagen',function(req,res){
     paginaPrincipal.update(
         {
             _id: mongoose.Types.ObjectId(req.params.id)
