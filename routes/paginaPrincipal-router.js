@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 //Obtener pagina principal
 router.get('/',function(req,res){
     paginaPrincipal.find().then(result=>{
-        res.send(result);
+        res.send(result[0]);
         res.end();
     }).catch(error=>{
         res.send(error);
@@ -20,10 +20,7 @@ router.post('/',function(req,res){
             logo:req.body.logo,
             titulo:req.body.titulo,
             descripcion:req.body.descripcion,
-            estilos:req.body.estilos,
             imagenes:[],
-            videos:[],
-            documentos:[],
             visibilidad:req.body.visibilidad
         }
     );
@@ -45,8 +42,7 @@ router.put('/',function(req,res){
             favicon:req.body.favicon,
             logo:req.body.logo,
             titulo:req.body.titulo,
-            descripcion:req.body.descripcion,
-            estilos:req.body.estilos,  
+            descripcion:req.body.descripcion
         }
     ).then(result=>{
         res.send(result);

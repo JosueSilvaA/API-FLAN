@@ -6,10 +6,7 @@ var esquema = mongoose.Schema(
         logo:String,
         titulo:String,
         descripcion:String,
-        estilos:String,
         imagenes:Array,
-        videos:Array,
-        documentos:Array,
         visibilidad:String
     }
 );
