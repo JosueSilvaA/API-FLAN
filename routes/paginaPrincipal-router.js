@@ -58,10 +58,10 @@ router.put('/:id',function(req,res){
 // crud de imagenes de la pagina principal
 
 // Agregar imagen a la pagina
-router.post('/imagenes',function(req,res){
+router.post('/:id/imagenes',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')
+            _id: mongoose.Types.ObjectId(req.params.id)
         },
         {
             $push:{
