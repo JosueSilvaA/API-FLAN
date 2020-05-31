@@ -134,7 +134,8 @@ router.get('/:id/imagenes/:idImagen',function(req,res){
         { 
             _id: mongoose.Types.ObjectId(req.params.id),
             "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
-        }
+        },
+        { "imagenes._id.$":true}
     ).then(result=>{
         res.send(result.imagenes[0]);
         res.end();
