@@ -35,9 +35,9 @@ router.post('/',function(req,res){
 });
 
 //Editar pagina Principal
-router.put('/',function(req,res){
+router.put('/:id',function(req,res){
     paginaPrincipal.update(
-        { _id: mongoose.Types.ObjectId('5ebb57d45ed9fe2640e02c74')},
+        { _id: mongoose.Types.ObjectId(req.params.id)},
         {
             favicon:req.body.favicon,
             logo:req.body.logo,
