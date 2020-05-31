@@ -53,6 +53,8 @@ router.put('/:id',function(req,res){
     });
 });
 
+
+
 // crud de imagenes de la pagina principal
 
 // Agregar imagen a la pagina
