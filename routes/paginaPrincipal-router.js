@@ -20,6 +20,7 @@ router.post('/',function(req,res){
             logo:req.body.logo,
             titulo:req.body.titulo,
             descripcion:req.body.descripcion,
+            piePagina: '',
             imagenes:[],
             visibilidad:req.body.visibilidad
         }
@@ -40,7 +41,8 @@ router.put('/:id',function(req,res){
         { _id: mongoose.Types.ObjectId(req.params.id)},
         {
             titulo:req.body.titulo,
-            descripcion:req.body.descripcion
+            descripcion:req.body.descripcion,
+            piePagina:req.body.piePagina
         }
     ).then(result=>{
         res.send(result);
