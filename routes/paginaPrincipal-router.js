@@ -131,7 +131,31 @@ router.put('/:id/imagenes/:idImagen',function(req,res){
         {
             $set:
             {
-                "imagenes.$.url":req.body.url
+                "imagenes.$.nombreImagen":req.body.nombreImagen ,
+                "imagenes.$.descripcion":req.body.descripcion
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+/////////////////////editar url imagen//////////////////
+router.delete('/:id/imagenes/:idImagen/imagen',function(req,res){
+    paginaPrincipal.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.id)
+        },
+        {
+            $pull:{
+                imagenes:
+                {
+                    _id:mongoose.Types.ObjectId(req.params.idImagen)
+                }
             }
         }
     ).then(result=>{
