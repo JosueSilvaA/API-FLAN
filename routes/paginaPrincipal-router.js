@@ -145,7 +145,7 @@ router.put('/:id/imagenes/:idImagen',function(req,res){
 });
 
 /////////////////////editar url imagen//////////////////
-router.delete('/:id/imagenes/:idImagen/imagen',function(req,res){
+router.put('/:id/imagenes/:idImagen/imagen',function(req,res){
     paginaPrincipal.update(
         {
             _id: mongoose.Types.ObjectId(req.params.id)
