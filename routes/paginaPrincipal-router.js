@@ -148,15 +148,14 @@ router.put('/:id/imagenes/:idImagen',function(req,res){
 router.put('/:id/imagenes/:idImagen/imagen',function(req,res){
     paginaPrincipal.update(
         {
-            _id: mongoose.Types.ObjectId(req.params.id)
+            _id: mongoose.Types.ObjectId(req.params.id),
+            "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
         },
         {
-            $pull:{
-                imagenes:
+            $set:
                 {
-                    _id:mongoose.Types.ObjectId(req.params.idImagen)
+                "imagenes.$.url":req.body.url,
                 }
-            }
         }
     ).then(result=>{
         res.send(result);
