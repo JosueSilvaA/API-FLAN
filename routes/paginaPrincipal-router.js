@@ -131,8 +131,7 @@ router.put('/:id/imagenes/:idImagen',function(req,res){
         {
             $set:
             {
-                "imagenes.$.nombreImagen":req.body.nombreImagen ,
-                "imagenes.$.descripcion":req.body.descripcion
+                "imagenes.$.url":req.body.url
             }
         }
     ).then(result=>{
