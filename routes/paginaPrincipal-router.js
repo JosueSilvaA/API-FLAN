@@ -39,10 +39,25 @@ router.put('/:id',function(req,res){
     paginaPrincipal.update(
         { _id: mongoose.Types.ObjectId(req.params.id)},
         {
-            favicon:req.body.favicon,
-            logo:req.body.logo,
             titulo:req.body.titulo,
             descripcion:req.body.descripcion
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+//////////////////logos//////////
+router.put('/:id/logos',function(req,res){
+    paginaPrincipal.update(
+        { _id: mongoose.Types.ObjectId(req.params.id)},
+        {
+            favicon:req.body.favicon,
+            logo:req.body.logo
         }
     ).then(result=>{
         res.send(result);
