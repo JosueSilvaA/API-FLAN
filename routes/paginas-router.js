@@ -9,9 +9,8 @@ router.post('/',function(req,res){
         {
             titulo: req.body.titulo,
             descripcion:req.body.descripcion,
-            paginaPadre:'',
-            encabezado:'',
-            piePagina:'',
+            encabezado:req.body.encabezado,
+            piePagina:req.body.piePagina,
             contenido:[],
             posts:[],
             imagenes:[],
@@ -62,7 +61,6 @@ router.put('/:idPagina',function(req,res){
         {
             titulo: req.body.titulo,
             descripcion: req.body.descripcion,
-            paginaPadre: req.body.paginaPadre,
             encabezado: req.body.encabezado,
             piePagina: req.body.piePagina
         }
@@ -133,8 +131,7 @@ router.post('/:idPagina/contenido',function(req,res){
             $push:{
                 contenido:{
                     _id:mongoose.Types.ObjectId(),
-                    tipo:req.body.tipo,
-                    html:req.body.html
+                    informacion: req.body.informacion
                 }
             }
         }
@@ -157,7 +154,7 @@ router.put('/:idPagina/contenido/:idContenido',function(req,res){
         {
             $set:
             {
-                "contenido.$.html":req.body.html
+                "contenido.$.informacion":req.body.informacion
             }
         }
     ).then(result=>{
@@ -170,7 +167,7 @@ router.put('/:idPagina/contenido/:idContenido',function(req,res){
 });
 
 // Eliminar un  contenido
-router.post('/:idPagina/contenido/:idContenido',function(req,res){
+router.delete('/:idPagina/contenido/:idContenido',function(req,res){
     pagina.update(
         {
             _id: mongoose.Types.ObjectId(req.params.idPagina),
