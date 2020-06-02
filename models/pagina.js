@@ -4,7 +4,6 @@ var esquema = mongoose.Schema(
     {
         titulo:String,
         descripcion:String,
-        palabraClave:String,
         paginaPadre:String,
         encabezado:String,
         piePagina:String,
@@ -14,6 +13,7 @@ var esquema = mongoose.Schema(
         videos:Array,
         documentos:Array,
         visualizacion:String,
+        tipo:String,
         estado:String
     }
 );

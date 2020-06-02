@@ -9,7 +9,6 @@ router.post('/',function(req,res){
         {
             titulo: req.body.titulo,
             descripcion:req.body.descripcion,
-            palabrasClave:'',
             paginaPadre:'',
             encabezado:'',
             piePagina:'',
@@ -19,7 +18,8 @@ router.post('/',function(req,res){
             videos:[],
             documentos:[],
             visualizacion:req.body.visualizacion,
-            estado:req.body.estado
+            tipo:req.body.tipo,
+            estado:'inactiva'
         }
     );
     p.save().then(result=>{
