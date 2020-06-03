@@ -171,13 +171,13 @@ router.get('/:idPagina/contenido/:idContenido',function(req,res){
     pagina.find(
         {
             _id:req.params.idPagina,
-            "contenido._id":req.params.idContenido
+            "contenido._id":mongoose.Types.ObjectId(req.params.idContenido)
         },
         {
             "contenido._id.$":true
         }
     ).then(result=>{
-        res.send(result[0]);
+        res.send(result[0].contenido[0]);
         res.end();
     }).catch(error=>{
         res.send(error);
