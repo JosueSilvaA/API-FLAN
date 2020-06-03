@@ -284,6 +284,25 @@ router.put('/:idPagina/imagenes/:idImagen',function(req,res){
     });
 });
 
+// Obtener la imagen
+router.get('/:idPagina/contenido/:idImagen',function(req,res){
+    pagina.find(
+        {
+            _id:req.params.idPagina,
+            "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
+        },
+        {
+            "imagenes._id.$":true
+        }
+    ).then(result=>{
+        res.send(result[0].imagenes[0]);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
 // crud de videos pagina principal
 
 //agregar video a la pagina principal
