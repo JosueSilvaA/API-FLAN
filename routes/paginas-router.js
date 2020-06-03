@@ -284,6 +284,29 @@ router.put('/:idPagina/imagenes/:idImagen',function(req,res){
     });
 });
 
+
+///////////editar la url
+router.put('/:idPagina/imagenes/:idImagen/imagen',function(req,res){
+    pagina.update(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idPagina),
+            "imagenes._id":mongoose.Types.ObjectId(req.params.idImagen)
+        },
+        {
+            $set:
+            {
+                "imagenes.$.url":req.body.url
+            }
+        }
+    ).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
 // Obtener la imagen
 router.get('/:idPagina/contenido/:idImagen',function(req,res){
     pagina.find(
