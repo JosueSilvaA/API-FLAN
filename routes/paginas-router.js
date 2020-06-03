@@ -44,7 +44,7 @@ router.get('/',function(req,res){
 //Obtener una pagina en especifico
 router.get('/:idPagina',function(req,res){
     pagina.find({_id:req.params.idPagina}).then(result=>{
-        res.send(result);
+        res.send(result[0]);
         res.end();
     }).catch(error=>{
         res.send(error);
