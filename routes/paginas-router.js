@@ -308,7 +308,7 @@ router.put('/:idPagina/imagenes/:idImagen/imagen',function(req,res){
 });
 
 // Obtener la imagen
-router.get('/:idPagina/contenido/:idImagen',function(req,res){
+router.get('/:idPagina/imagenes/:idImagen',function(req,res){
     pagina.find(
         {
             _id:req.params.idPagina,
