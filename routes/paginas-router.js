@@ -166,6 +166,26 @@ router.put('/:idPagina/contenido/:idContenido',function(req,res){
     });
 });
 
+// Obtener el contenido
+router.get('/:idPagina/contenido/:idContenido',function(req,res){
+    pagina.find(
+        {
+            _id:req.params.idPagina,
+            "contenido._id":req.params.idContenido
+        },
+        {
+            "contenido._id.$":true
+        }
+    ).then(result=>{
+        res.send(result[0]);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+
 // Eliminar un  contenido
 router.delete('/:idPagina/contenido/:idContenido',function(req,res){
     pagina.update(
