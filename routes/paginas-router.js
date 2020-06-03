@@ -239,7 +239,7 @@ router.post('/:idPagina/imagenes',function(req,res){
 });
 // Eliminar imagen de la pagina
 
-router.post('/:idPagina/imagenes/:idImagen',function(req,res){
+router.delete('/:idPagina/imagenes/:idImagen',function(req,res){
     pagina.update(
         {
             _id: mongoose.Types.ObjectId(req.params.idPagina)
